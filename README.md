@@ -1,42 +1,68 @@
-# 🛡️ AgentGuard: The Circuit Breaker & Safety Firewall for AI Agents
+<p align="center">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/cuic19053-hue/agent-guard/main/assets/banner.png">
+    <img alt="AgentGuard Banner" src="https://raw.githubusercontent.com/cuic19053-hue/agent-guard/main/assets/banner.png" width="100%">
+  </picture>
+</p>
+
+# 🛡️ AgentGuard
+
+<p align="center">
+  <strong>The Circuit Breaker & Safety Firewall for AI Agents and LLM Function Calling.</strong>
+</p>
 
 <p align="center">
   <a href="https://github.com/cuic19053-hue/agent-guard/stargazers"><img src="https://img.shields.io/github/stars/cuic19053-hue/agent-guard?style=for-the-badge&logo=github&color=00ffaa" alt="GitHub Stars"></a>
+  <a href="https://github.com/cuic19053-hue/agent-guard/network/members"><img src="https://img.shields.io/github/forks/cuic19053-hue/agent-guard?style=for-the-badge&logo=github&color=blue" alt="GitHub Forks"></a>
   <a href="https://pypi.org/project/agent-guard/"><img src="https://img.shields.io/pypi/v/agent-guard?style=for-the-badge&logo=pypi&color=blue" alt="PyPI Version"></a>
   <a href="https://github.com/cuic19053-hue/agent-guard/blob/main/LICENSE"><img src="https://img.shields.io/badge/License-Apache_2.0-blue.svg?style=for-the-badge" alt="License"></a>
-  <a href="https://hub.docker.com/r/agentguard/agent-guard"><img src="https://img.shields.io/docker/pulls/agentguard/agent-guard?style=for-the-badge&logo=docker" alt="Docker Pulls"></a>
-  <a href="https://discord.gg/"><img src="https://img.shields.io/badge/Community-Discord-purple?style=for-the-badge&logo=discord" alt="Discord"></a>
+  <a href="https://github.com/cuic19053-hue/agent-guard/issues"><img src="https://img.shields.io/github/issues/cuic19053-hue/agent-guard?style=for-the-badge&color=orange" alt="GitHub Issues"></a>
+  <a href="https://hub.docker.com/r/cuic19053/agent-guard"><img src="https://img.shields.io/badge/Docker-Ready-2496ED?style=for-the-badge&logo=docker" alt="Docker Pulls"></a>
 </p>
 
 <p align="center">
-  <strong>Stop AI Agent Infinite Loops • Block Dangerous Tool Calls (rm -rf / Drop Table) • Auto Cut-Off API Budget Overrun</strong>
+  <strong>Stop Runaway AI Agent Loops • Block Dangerous Tool Calls (`rm -rf` / `DROP TABLE`) • Auto-Halt API Token Budget Burn</strong>
 </p>
 
 <p align="center">
-  <em>Zero-Code Change. Plug-and-play reverse proxy for OpenAI, DeepSeek, Claude, Ollama, LangChain, CrewAI, AutoGen, and Dify.</em>
+  <em>Zero Code Modification. Plug-and-play reverse proxy for OpenAI, DeepSeek, Claude, Ollama, LangChain, CrewAI, AutoGen, and Dify.</em>
 </p>
 
 ---
 
-## ⚡ What is AgentGuard?
+## ⚡ The Nightmare AgentGuard Solves
 
-**AgentGuard** is an open-source, ultra-lightweight **runtime circuit breaker and security gateway** designed specifically for autonomous AI Agents and LLM Function Calling.
+When autonomous AI agents gain tool execution capabilities (Bash commands, Python REPL, SQL databases, Web scrapers), production risks multiply overnight:
 
-When you give an AI agent access to tools (Bash, Python REPL, SQL database, Web scraping), things can quickly spiral out of control:
-1. 💸 **Infinite Retry Loop**: The agent fails a step and retries 50 times in 2 minutes, burning **$500+ in OpenAI API tokens**.
-2. 💣 **Destructive Tool Execution**: The agent hallucinates and executes dangerous commands like `rm -rf /`, `DROP TABLE users;`, or leaks sensitive `.env` keys.
-3. 🐌 **Context Window Explosion**: Multi-turn history grows uncontrollably to 128k tokens, driving latency through the roof.
+```text
+       [Your Agent] 
+            │  (base_url = localhost:8080/v1)
+            ▼
+    ┌──────────────────────────────────────────────┐
+    │              🛡️ AgentGuard                   │
+    │  ├─ 🔄 Dead-Loop Breaker (Repeated tools)    │
+    │  ├─ 🚫 Dangerous Command Shield (rm -rf)    │
+    │  └─ 💰 Budget & Token Hard-Cap Sentry       │
+    └──────────────────────────────────────────────┘
+            │
+            ▼
+   [OpenAI / DeepSeek / Claude / Local Ollama]
+```
 
-**AgentGuard acts as an intelligent safety proxy.** Just change your agent's `base_url` to `http://localhost:8080/v1`—AgentGuard intercepts all traffic, detects loops in real time, blocks unauthorized tools, and protects your server and wallet.
+* 💸 **Infinite Retry Loop (Token Burn)**: An agent hits a missing file or a 404 URL and retries 50 times in 2 minutes, draining **$500+ in API credits**.
+* 💣 **Destructive Tool Execution (System Wipeout)**: The agent hallucinates and executes dangerous commands like `rm -rf /*`, `DROP TABLE users;`, or alters system permissions.
+* 🐌 **Context Window Explosion**: Multi-turn history grows uncontrollably to 128k+ tokens, destroying response latency and blowing budgets.
+
+**AgentGuard acts as an intelligent safety gatekeeper.** Just point your agent's `base_url` to `http://localhost:8080/v1`. AgentGuard monitors traffic in real time, auto-trips the breaker on infinite loops, and blocks hazardous operations before damage occurs.
 
 ---
 
-## 🚀 Quick Start (5 Seconds)
+## 🚀 Quick Start (Under 60 Seconds)
 
-### 1. Run AgentGuard with Pip or Docker
+### 1. Start AgentGuard via Python CLI or Docker
 
 ```bash
-# Option A: Run via Python CLI
+# Option A: Run via pip CLI
 pip install agent-guard
 agent-guard --port 8080 --target-url https://api.openai.com
 
@@ -46,15 +72,15 @@ docker run -d -p 8080:8080 \
   agentguard/agent-guard:latest
 ```
 
-### 2. Point Your Agent to AgentGuard (Zero Code Change!)
+### 2. Connect Your Agent (Zero Code Changes!)
 
-Simply point your existing OpenAI / LangChain / CrewAI client to `localhost:8080`:
+Simply change the `base_url` in your existing SDK:
 
-#### In Python:
+#### Python (Official OpenAI / DeepSeek SDK)
 ```python
 from openai import OpenAI
 
-# Simply change base_url to AgentGuard!
+# Simply route through AgentGuard!
 client = OpenAI(
     base_url="http://localhost:8080/v1",
     api_key="sk-your-openai-or-deepseek-key"
@@ -62,12 +88,12 @@ client = OpenAI(
 
 response = client.chat.completions.create(
     model="gpt-4o",  # or deepseek-chat, claude-3-5-sonnet
-    messages=[{"role": "user", "content": "Analyze system logs"}],
+    messages=[{"role": "user", "content": "Analyze database logs"}],
     tools=my_agent_tools
 )
 ```
 
-#### In LangChain / CrewAI / AutoGen:
+#### LangChain / CrewAI / AutoGen
 ```python
 from langchain_openai import ChatOpenAI
 
@@ -80,32 +106,31 @@ llm = ChatOpenAI(
 
 ---
 
-## 🛡️ Key Features
+## 🛡️ Core Capabilities
 
-### 1. 🔄 Dead-Loop Sentinel (Stop Agent Infinite Loops)
-- Tracks agent conversation fingerprint and sliding window tool calls.
-- Detects recurring identical tool calls with same parameters.
-- **Auto-trips the circuit breaker** on the 3rd failed attempt and injects graceful correction prompts, preventing runaway API bills.
+### 1. 🔄 Dead-Loop Sentinel (Automated Circuit Breaker)
+* Monitors session fingerprints and sliding-window tool executions.
+* Detects cyclical, identical tool invocations with identical arguments.
+* **Auto-trips on the 3rd attempt**, halting runaway loops and preventing catastrophic API bills.
 
-### 2. 🚫 Dangerous Tool Call Interceptor (Block rm -rf & Drop Tables)
-- Real-time static analysis and regex protection for Function / Tool Calls.
-- Pre-configured guardrails for:
-  - **Bash/Shell**: Blocks `rm -rf`, `mkfs`, `dd`, `chmod 777`, `kill -9`.
-  - **SQL**: Blocks `DROP DATABASE`, `TRUNCATE`, `ALTER TABLE` unless explicitly allowed.
-  - **File Operations**: Prevents path traversal (`../../etc/passwd`).
-- Optional **Human-in-the-Loop Webhook** (Slack / Discord / Lark approval button).
+### 2. 🚫 Dangerous Tool Call Interception (`rm -rf`, `DROP TABLE`)
+* Real-time static analysis and regex protection for Function / Tool Calling.
+* Default protection suite:
+  * **Bash / Shell**: Intercepts `rm -rf`, `mkfs`, `dd`, `chmod 777`, `kill -9`.
+  * **SQL Database**: Blocks `DROP DATABASE`, `TRUNCATE`, `ALTER TABLE` unless whitelisted.
+  * **File Systems**: Prevents directory traversal (`../../etc/passwd`).
 
-### 3. 💰 Budget Hard Cap & Token Circuit Breaker
-- Set a maximum USD or token budget per session or per minute.
-- Returns an immediate `429 TokenBudgetExceeded` error the moment an agent goes rogue.
+### 3. 💰 Budget Hard-Cap & Rate Guard
+* Configure token and cost budgets per session or timeframe.
+* Returns standard `429 circuit_breaker_tripped` the moment abnormal consumption patterns emerge.
 
-### 4. 🗜️ Context Window Pruning (Save 30% - 50% Tokens)
-- Strips repetitive failure stack traces and excessive whitespaces before sending them to the model.
-- Lowers token consumption and boosts response speeds.
+### 4. 🗜️ Context Window Optimization
+* Strips redundant execution traces, noisy terminal logs, and whitespace bloating prior to upstream forwarding.
+* Saves 30%–50% in token overhead while reducing round-trip latency.
 
 ---
 
-## 🔍 How It Compares
+## 🔍 How AgentGuard Compares
 
 | Feature | AgentGuard | LiteLLM | NeMo Guardrails | Langfuse |
 | :--- | :---: | :---: | :---: | :---: |
@@ -119,29 +144,28 @@ llm = ChatOpenAI(
 
 ## ⚙️ Configuration (`agentguard.yaml`)
 
-Create an optional `agentguard.yaml` in your project root:
+Customize rules easily in your root directory:
 
 ```yaml
 server:
+  host: "0.0.0.0"
   port: 8080
   target_url: "https://api.openai.com"  # or https://api.deepseek.com
 
 circuit_breaker:
   enabled: true
-  max_repeated_tool_calls: 3        # Break if tool is called 3 times with same params
-  max_session_turns: 25             # Max interaction turns per task
-  hard_budget_tokens: 100000        # Max tokens allowed per session
+  max_repeated_tool_calls: 3        # Tripped if identical tool is called 3 times
+  max_session_turns: 30             # Maximum dialog turns per session
+  hard_budget_tokens: 150000        # Token ceiling per session
 
 security:
   block_dangerous_tools: true
   blocked_patterns:
-    - "rm\\s+-rf"
+    - "rm\\s+(-[a-zA-Z]*r[a-zA-Z]*f|-[a-zA-Z]*f[a-zA-Z]*r)"
+    - "drop\\s+database"
     - "drop\\s+table"
-    - "truncate"
+    - "truncate\\s+table"
     - "chmod\\s+777"
-  human_in_the_loop:
-    enabled: false
-    webhook_url: "https://hooks.slack.com/services/..."
 ```
 
 ---
@@ -157,15 +181,18 @@ security:
 
 ---
 
-## 🤝 Contributing & Community
+## 🤝 Contributing
 
-We welcome all contributions! Whether it's adding safety rules, enhancing protocol parsers, or writing documentation.
+Contributions are warmly welcome! From safety heuristics to performance enhancements:
 
-- 🐛 [Report Bugs & Feature Requests](https://github.com/cuic19053-hue/agent-guard/issues)
-- 💡 [Submit a Pull Request](https://github.com/cuic19053-hue/agent-guard/pulls)
+1. Fork the Project
+2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your Changes (`git commit -m 'feat: Add AmazingFeature'`)
+4. Push to the Branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
 
 ---
 
 ## 📄 License
 
-AgentGuard is licensed under the [Apache 2.0 License](LICENSE).
+Distributed under the Apache 2.0 License. See `LICENSE` for details.
