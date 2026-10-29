@@ -1,0 +1,35 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "agent-guard"
+version = "0.1.0"
+description = "The Circuit Breaker & Safety Firewall for AI Agents. Prevent infinite loops, budget burn, and dangerous tool calls."
+readme = "README.md"
+authors = [
+    { name = "AgentGuard Team", email = "hello@agentguard.dev" }
+]
+license = { text = "Apache-2.0" }
+requires-python = ">=3.9"
+dependencies = [
+    "fastapi>=0.100.0",
+    "uvicorn>=0.22.0",
+    "httpx>=0.24.0",
+    "pydantic>=2.0.0",
+    "pyyaml>=6.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.0.0",
+    "pytest-asyncio>=0.21.0",
+]
+
+[project.scripts]
+agent-guard = "agent_guard.cli:main"
+
+[project.urls]
+Homepage = "https://github.com/agent-guard/agent-guard"
+Repository = "https://github.com/agent-guard/agent-guard"
+Issues = "https://github.com/agent-guard/agent-guard/issues"
