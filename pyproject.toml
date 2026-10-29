@@ -30,6 +30,6 @@ dev = [
 agent-guard = "agent_guard.cli:main"
 
 [project.urls]
-Homepage = "https://github.com/agent-guard/agent-guard"
-Repository = "https://github.com/agent-guard/agent-guard"
-Issues = "https://github.com/agent-guard/agent-guard/issues"
+Homepage = "https://github.com/cuic19053-hue/agent-guard"
+Repository = "https://github.com/cuic19053-hue/agent-guard"
+Issues = "https://github.com/cuic19053-hue/agent-guard/issues"

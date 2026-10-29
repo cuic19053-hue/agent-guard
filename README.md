@@ -1,9 +1,9 @@
 # 🛡️ AgentGuard: The Circuit Breaker & Safety Firewall for AI Agents
 
 <p align="center">
-  <a href="https://github.com/agent-guard/agent-guard/stargazers"><img src="https://img.shields.io/github/stars/agent-guard/agent-guard?style=for-the-badge&logo=github&color=00ffaa" alt="GitHub Stars"></a>
+  <a href="https://github.com/cuic19053-hue/agent-guard/stargazers"><img src="https://img.shields.io/github/stars/cuic19053-hue/agent-guard?style=for-the-badge&logo=github&color=00ffaa" alt="GitHub Stars"></a>
   <a href="https://pypi.org/project/agent-guard/"><img src="https://img.shields.io/pypi/v/agent-guard?style=for-the-badge&logo=pypi&color=blue" alt="PyPI Version"></a>
-  <a href="https://github.com/agent-guard/agent-guard/blob/main/LICENSE"><img src="https://img.shields.io/badge/License-Apache_2.0-blue.svg?style=for-the-badge" alt="License"></a>
+  <a href="https://github.com/cuic19053-hue/agent-guard/blob/main/LICENSE"><img src="https://img.shields.io/badge/License-Apache_2.0-blue.svg?style=for-the-badge" alt="License"></a>
   <a href="https://hub.docker.com/r/agentguard/agent-guard"><img src="https://img.shields.io/docker/pulls/agentguard/agent-guard?style=for-the-badge&logo=docker" alt="Docker Pulls"></a>
   <a href="https://discord.gg/"><img src="https://img.shields.io/badge/Community-Discord-purple?style=for-the-badge&logo=discord" alt="Discord"></a>
 </p>
@@ -161,8 +161,8 @@ security:
 
 We welcome all contributions! Whether it's adding safety rules, enhancing protocol parsers, or writing documentation.
 
-- 🐛 [Report Bugs & Feature Requests](https://github.com/agent-guard/agent-guard/issues)
-- 💡 [Submit a Pull Request](https://github.com/agent-guard/agent-guard/pulls)
+- 🐛 [Report Bugs & Feature Requests](https://github.com/cuic19053-hue/agent-guard/issues)
+- 💡 [Submit a Pull Request](https://github.com/cuic19053-hue/agent-guard/pulls)
 
 ---
 
