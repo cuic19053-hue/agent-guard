@@ -9,7 +9,11 @@
 [![PyPI Version](https://img.shields.io/badge/pypi-v0.1.0-blue?style=for-the-badge&logo=pypi)](https://pypi.org/project/agent-guard/)
 [![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg?style=for-the-badge)](https://github.com/cuic19053-hue/agent-guard/blob/main/LICENSE)
 [![Tests Passing](https://img.shields.io/badge/tests-passing-success?style=for-the-badge&logo=pytest)](https://github.com/cuic19053-hue/agent-guard/actions)
-[![Docker Ready](https://img.shields.io/badge/Docker-Ready-2496ED?style=for-the-badge&logo=docker)](https://hub.docker.com/r/cuic19053/agent-guard)
+[![Docker Ready](https://hub.docker.com/r/cuic19053/agent-guard)
+
+<br/>
+
+**English** | [简体中文](README_CN.md)(https://img.shields.io/badge/Docker-Ready-2496ED?style=for-the-badge&logo=docker)](https://hub.docker.com/r/cuic19053/agent-guard)
 
 <br/>
 
